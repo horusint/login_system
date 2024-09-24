@@ -1,7 +1,13 @@
 <?php
 require_once '../includes/headers.php';
 require_once '../includes/functions.php';
+require_once '../config/db.php';
+
 session_start();
+
+
+
+
 
 if (!is_admin($_SESSION['user_id'], $pdo)) {
     header('Location: index.php');
