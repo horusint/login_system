@@ -1,17 +1,46 @@
 <?php
 
+session_start();
+
+
 function validate_csrf_token($token) {
+    echo "running validate!";
+    // return isset($_SESSION['csrf_token']) && $token === $_SESSION['csrf_token'];
+    if($token === $_SESSION['csrf_token']){
+        $tokenOK = 1;
+    }else{
+        $tokenOK = 0;
+    }
+
+    if(isset($_SESSION['csrf_token'])){
+        $estaSeteado = 1;
+    }else{
+        $estaSeteado = 0;
+    }
+
+    echo "token[";
+    echo $tokenOK;
+    echo "]";
+    echo "</br>";
+    echo "isset[";
+    echo $estaSeteado;
+    echo "]";
+    echo "</br>";
+
+    // return isset($_SESSION['csrf_token']);
     return isset($_SESSION['csrf_token']) && $token === $_SESSION['csrf_token'];
 }
 
+/*
 function generate_csrf_token() {
     return bin2hex(random_bytes(32));
 }
-
+*/
 function generate_csrf_token() {
     if (!isset($_SESSION['csrf_token'])) {
         $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
     }
+    // echo $_SESSION['csrf_token'];
     return $_SESSION['csrf_token'];
 }
 

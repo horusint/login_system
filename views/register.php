@@ -2,6 +2,11 @@
 require_once '../includes/headers.php';
 require_once '../includes/functions.php';
 
+/*
+echo "get_include_path(): [ ";
+echo get_include_path();
+echo " ]";
+*/
 $csrf_token = generate_csrf_token();
 ?>
 
