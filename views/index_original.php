@@ -1,14 +1,18 @@
 <?php
 
+session_start();
 
-
-if(!isset($_SESSION)){
-    session_start();
+/*
+if (!isset($_SESSION['csrf_token'])) {
+    echo "no esta seteado csfr_token.";
+}else{
+    echo "csrf_token SET!";
+    // echo $_SESSION['csrf_token'];
+    // lo voy a redireccionar al dashboard!
+    // header('Location: dashboard.php');
 }
-
-
-
-
+*/
+// --------$_SESSION['user_id']
 if (!isset($_SESSION['user_id'])) {
     echo "no hay usuario logueado.";
 }else{
@@ -17,22 +21,27 @@ if (!isset($_SESSION['user_id'])) {
     // lo voy a redireccionar al dashboard!
     header('Location: dashboard.php');
 }
+
+
+
+
 // ---------
+
+
 
 $elPath = get_include_path();
 $nuevo = $elPath . "/" . "login_system";
 set_include_path($nuevo);
+/*
+echo "get_include_path(): [ ";
+echo get_include_path();
+echo " ]";
+*/
 require_once '../includes/headers.php';
-require_once '../controllers/csrf_check.php';
+require_once '../includes/functions.php';
 
-$mi_csrf = new csrf_check();
-$un_csrf_token = $mi_csrf->generate_csrf_token();
-
-
+$un_csrf_token = generate_csrf_token();
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +55,7 @@ $un_csrf_token = $mi_csrf->generate_csrf_token();
 <body>
     <div class="container">
         <h1>Login</h1>
-        <form action="login.php" method="POST">
+        <form action="../controllers/auth.php" method="POST">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <input type="hidden" name="csrf_token" value="<?php echo $un_csrf_token; ?>">
