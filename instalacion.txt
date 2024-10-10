@@ -1,0 +1,9 @@
+Nota1: el directorio de login_system debe estar posicionado en el directorio raiz de los documentos públicos del webserver (ej. htdocs para Apache).
+Nota2: en el directorio __sql/ hay un archivo .sql que contiene las sentencias de creación de la base de datos.
+
+1. el archivo database.sql contiene las sentencias de creación de la base de datos "login_system".
+2. Por razones de seguridad, se debería crear un usuario aparte para la base de datos. Pese a ello, debido a la naturaleza educativa y de trabajo práctico en entorno de TESTING es posible utilizar el usuario root.
+3. Las credenciales del usuario de base de datos y el nombre de la base de datos ("login_system" a menos que se haya cambiado manualmente) deben ser ingresadas de forma HARDCODEADA (indeseable, inseguro, solo durante el desarrollo!) en el método constructor de la clase conexion_db del archivo PHP con el mísmo nombre.
+
+
+

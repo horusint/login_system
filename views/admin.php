@@ -1,20 +1,14 @@
 <?php
 require_once '../includes/headers.php';
-require_once '../includes/functions.php';
-require_once '../config/db.php';
+require_once '../controllers/usuario.php';
 
-session_start();
-
-
-
-
-
-if (!is_admin($_SESSION['user_id'], $pdo)) {
-    header('Location: index.php');
-    exit;
+if(!isset($_SESSION)){
+    session_start();
 }
 
-$logs = get_logs($pdo);
+$mi_usuario = new usuario();
+$logs = $mi_usuario->panel_admin();
+
 ?>
 
 <!DOCTYPE html>

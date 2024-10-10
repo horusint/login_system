@@ -1,7 +1,12 @@
 <?php
 require_once '../includes/headers.php';
-require_once '../includes/functions.php';
-session_start();
+// require_once '../includes/functions.php';
+
+
+if(!isset($_SESSION)){
+    session_start();
+}
+
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: index.php');
